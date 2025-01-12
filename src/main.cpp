@@ -1,5 +1,6 @@
 #include "csv.hpp"
 #include <eigen3/Eigen/Core>
+#include <eigen3/Eigen/Eigenvalues>
 #include <iostream>
 #include <vector>
 
@@ -46,6 +47,12 @@ int main() {
   Eigen::MatrixXd cov = (X_mean.transpose() * X_mean) * (k);
 
   std::cout << cov << std::endl;
+
+  Eigen::EigenSolver<Eigen::MatrixXd> es(cov);
+
+  std::cout << es.eigenvalues() << std::endl;
+
+  std::cout << es.eigenvectors() << std::endl;
 
   return 0;
 }
